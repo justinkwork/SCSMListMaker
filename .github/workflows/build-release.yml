@@ -54,7 +54,7 @@ jobs:
         Copy-Item -Path ".\List Maker\bin\Release\JKW.MPTools.dll" -Destination "EXE\"
         Compress-Archive ./ -DestinationPath ./ListMaker.zip
         Remove-Item -Path "EXE\List Maker.exe"
-        Remove-Item -Path "EXE\Microsoft.EnterpriseManagement.Cores.dll"
+        Remove-Item -Path "EXE\Microsoft.EnterpriseManagement.Core.dll"
         Remove-Item -Path "EXE\JKW.MPTools.dll"
   
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
