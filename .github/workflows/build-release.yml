@@ -32,7 +32,7 @@ jobs:
     - name: Change DLL Version
       run: |
         $newVersion = "1.0.0.${{github.run_number}}"
-        $originalAssembly = Get-Content -path JKW.MPTools\Properties\AssemblyInfo.cs
+        $originalAssembly = Get-Content -path List Maker\Properties\AssemblyInfo.cs
         $assemblyFileVersion = $originalAssembly[$originalAssembly.Length - 1]
         $originalAssembly.Replace($assemblyFileVersion, '[assembly: AssemblyFileVersion("' + $newVersion + '")]') | Out-File "List Maker\Properties\AssemblyInfo.cs"
 
