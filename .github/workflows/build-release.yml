@@ -52,7 +52,7 @@ jobs:
         Copy-Item -Path ".\List Maker\bin\Release\List Maker.exe" -Destination "EXE\"
         Copy-Item -Path ".\List Maker\bin\Release\Microsoft.EnterpriseManagement.Core.dll" -Destination "EXE\"
         Copy-Item -Path ".\List Maker\bin\Release\JKW.MPTools.dll" -Destination "EXE\"
-        Compress-Archive ./ -DestinationPath ./ListMaker.zip
+        Compress-Archive ./ -DestinationPath EXE\ListMaker.zip
         Remove-Item -Path "EXE\List Maker.exe"
         Remove-Item -Path "EXE\Microsoft.EnterpriseManagement.Core.dll"
         Remove-Item -Path "EXE\JKW.MPTools.dll"
