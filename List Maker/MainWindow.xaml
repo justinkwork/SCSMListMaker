@@ -1,0 +1,32 @@
+﻿<Window x:Class="List_Maker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:List_Maker"
+        mc:Ignorable="d"
+        Title="SCSM List Maker" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="txtOutputPath" HorizontalAlignment="Left" Height="23" Margin="136,27,0,0" TextWrapping="Wrap" Text="C:\Temp" IsEnabled="False" VerticalAlignment="Top" Width="522"/>
+        <Button Name="btnBrowse" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="673,28,0,0" Click="Button_Click"/>
+        <Label Content="Output Path:" HorizontalAlignment="Left" Margin="19,23,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBox Name="txtListName" HorizontalAlignment="Left" Height="23" Margin="135,94,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="522"/>
+        <Label Content="List Name:" HorizontalAlignment="Left" Margin="17,90,0,0" VerticalAlignment="Top" Width="111"/>
+        <TextBox Name="txtListDisplayName" HorizontalAlignment="Left" Height="23" Margin="136,125,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="522"/>
+        <Label Content="List Display Name:" HorizontalAlignment="Left" Margin="15,121,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBox Name="txtVersion" HorizontalAlignment="Left" Height="23" Margin="135,156,0,0" TextWrapping="Wrap" Text="1.0.0.0"  VerticalAlignment="Top" Width="99"/>
+        <Label Content="Version:" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="110"/>
+        <ListBox Name="lstInternal" HorizontalAlignment="Left" Height="100" Margin="28,261,0,0" VerticalAlignment="Top" Width="311"/>
+        <ListBox Name="lstDisplay" HorizontalAlignment="Left" Height="100" Margin="451,261,0,0" VerticalAlignment="Top" Width="311"/>
+        <Label  Content="List Internal Name:" HorizontalAlignment="Left" Margin="116,237,0,0" VerticalAlignment="Top" Width="161"/>
+        <Label  Content="List Display Name:" HorizontalAlignment="Left" Margin="550,234,0,0" VerticalAlignment="Top" Width="161"/>
+        <TextBox Name="txtMpName" HorizontalAlignment="Left" Height="23" Margin="135,61,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="522"/>
+        <Label Content="MP Name:" HorizontalAlignment="Left" Margin="17,57,0,0" VerticalAlignment="Top" Width="111"/>
+        <Button Name="btnCreateXml" Content="Create XML" HorizontalAlignment="Left" Margin="542,372,0,0" VerticalAlignment="Top" Width="98" Height="29" Click="btnCreateXml_Click"/>
+        <Button Name="btnCreateSealed" Content="Create Sealed MP" HorizontalAlignment="Left" Margin="664,372,0,0" VerticalAlignment="Top" Width="98" Height="29" Click="btnCreateSealed_Click"/>
+        <Button Name="btnAddList" Content="Add List" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="581,157,0,0" Click="btnAddList_Click"/>
+        <TextBox Name="txtSCSMServer" HorizontalAlignment="Left" Height="23" Margin="136,192,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="522"/>
+        <Label Content="SCSM Server:" HorizontalAlignment="Left" Margin="15,188,0,0" VerticalAlignment="Top" Width="110"/>
+
+    </Grid>
+</Window>
