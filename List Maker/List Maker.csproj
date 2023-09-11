@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JKW.MPTools">
-      <HintPath>..\dependencies\JKW.MPTools.dll</HintPath>
+      <HintPath>..\List Maker\dependencies\JKW.MPTools.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EnterpriseManagement.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\dependencies\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+      <HintPath>..\List Maker\dependencies\Microsoft.EnterpriseManagement.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
