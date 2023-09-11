@@ -93,5 +93,5 @@ jobs:
           with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
             asset_path: ${{ steps.download.outputs.download-path }}/ListMaker.zip
-            asset_name: List Maker.exe
-            asset_content_type: application/exe
+            asset_name: ListMaker.zip
+            asset_content_type: application/zip
