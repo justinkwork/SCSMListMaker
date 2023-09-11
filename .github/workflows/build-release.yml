@@ -1,0 +1,91 @@
+name: Build List Maker EXE
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  build:
+    name: Build EXE
+    strategy:
+      matrix:
+        configuration: [Release]
+
+    runs-on: windows-latest  
+
+    env:
+      Solution_Name: List Maker.sln                    
+      Wap_Project_Directory: List Maker/List Maker.csproj   
+      Wap_Project_Path: ./EXE                   
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Change DLL Version
+      run: |
+        $newVersion = "1.0.0.${{github.run_number}}"
+        $originalAssembly = Get-Content -path JKW.MPTools\Properties\AssemblyInfo.cs
+        $assemblyFileVersion = $originalAssembly[$originalAssembly.Length - 1]
+        $originalAssembly.Replace($assemblyFileVersion, '[assembly: AssemblyFileVersion("' + $newVersion + '")]') | Out-File "List Maker\Properties\AssemblyInfo.cs"
+
+
+    # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Compile DLL
+      run: msbuild $env:Solution_Name 
+      env:
+        Configuration: ${{ matrix.configuration }}
+ 
+    - name: Create Dir for DLL
+      run: | 
+       New-Item -Path "EXE" -ItemType Directory
+        
+    - name: "Copy DLL"
+      run: | 
+        Copy-Item -Path ".\List Maker\bin\Release\List Maker.exe" -Destination "EXE\"
+  
+    # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MPTools
+        path: ${{ env.Wap_Project_Path }}
+
+  release: 
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps: 
+        - name: Create release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: v${{ github.run_number }}
+            release_name: List Maker ${{ github.run_number }}
+            draft: false
+            prerelease: true
+        - name: Download asset
+          uses: actions/download-artifact@v3
+          id: download
+          with:
+            name: MPTools
+            
+        
+        - name: Upload Release Asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ${{ steps.download.outputs.download-path }}/List Maker.exe
+            asset_name: List Maker.exe
+            asset_content_type: application/exe
